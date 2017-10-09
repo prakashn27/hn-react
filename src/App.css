@@ -1,0 +1,15 @@
+.result {
+  width:  150px;
+  margin: 0 auto;
+  display:  block;
+  font-size: 2em;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.wrapper Button {
+  flex: 1;
+  padding:  10px;
+}
