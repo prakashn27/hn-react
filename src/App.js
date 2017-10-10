@@ -1,6 +1,61 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const StoryTile = (props) => {
+  return(
+    <div className="Card">
+      <a href={props.url} title={props.title} target="_blank">
+        <div className="Title">{props.title}</div>
+        <div className="Url">{props.url}</div>
+      </a>
+      <div className="By">{props.by}</div>
+    </div>
+  )
+}
+class Story extends Component {
+  initStory = (info) => {
+    this.setState({
+      url : info.url,
+      title : info.title,
+      by : info.by
+    });
+  };
+  componentDidMount() {
+    fetch(`https://hacker-news.firebaseio.com/v0/item/${this.props.storyid}.json`)
+    .then(res => res.json())
+    .then(text => this.initStory(text))
+    .catch((err) => console.log(err));
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      title : "",
+      url : "",
+      by : ""
+    }
+  }
+  render() {
+    return(
+      <StoryTile
+        {...this.state}
+      />
+    )
+  }
+}
+
+class StoryList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stories : []
+    }
+  }
+  rrender() {
+    return(
+        <div> stories </div>
+    )
+  }
+};
 const Result = (props) => {
   return(
     <div className="result">{props.counter}</div>
@@ -28,13 +83,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Result counter={this.state.counter}/>
-        <div className="wrapper">
-          <Button incrementValue={1} onClickFunction={this.incrementCounter}/>
-          <Button incrementValue={2} onClickFunction={this.incrementCounter}/>
-          <Button incrementValue={3} onClickFunction={this.incrementCounter}/>
-          <Button incrementValue={5} onClickFunction={this.incrementCounter}/>
-        </div>
+          <Story storyid={15435822} />
       </div>
     );
   }

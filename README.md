@@ -3,7 +3,7 @@
 hacker news implementation done in using React Library
 ```
 
-## [Demo](https://prakashn27.github.io/counter-react/)
+## [Demo](https://prakashn27.github.io/hn-react/)
 ## Tools Used:
 - `create-react-app`
 
