@@ -63,43 +63,37 @@ class StoryList extends Component {
   render() {
     return(
         <div>
-          {this.state.stories.map(story => <Story storyid={story}/>)}
+          {this.state.stories.map(story => <Story key={story.id} storyid={story}/>)}
         </div>
     )
   }
 };
+
 class Button extends Component {
   handleClick = () => {
-    this.props.onClickFunction(this.props.incrementValue);
+    this.props.onClickFunction(this.props.value);
   }
   render() {
     return(
-        <button onClick={this.handleClick}> +{this.props.incrementValue}</button>
-    )
+        <button onClick={this.handleClick}> {this.props.name}</button>
+    );
   }
 };
 
-class TitleBar implements Component {
-
-  render() {
-    return(
-      <div>
-
-      </div>
-    );
-  }
-}
-
 class App extends Component {
-  state = { title: "newstories" }
+  state = { title: "topstories" }
   setTitle = (newTitle) => {
     this.setState({
       title : newTitle
     });
+    console.log(this.state);
   };
   render() {
     return (
       <div>
+          <Button onClickFunction={this.setTitle} name="top" value="topstories"/>
+          <Button onClickFunction={this.setTitle} name="new" value="newstories"/>
+          <Button onClickFunction={this.setTitle} name="beststories" value="beststories"/>
           <StoryList title={this.state.title}/>
       </div>
     );
