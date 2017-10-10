@@ -32,9 +32,6 @@ class Story extends Component {
     .then(text => this.initStory(text))
     .catch((err) => console.log(err));
   }
-  constructor(props) {
-    super(props);
-  }
   render() {
     return(
       <StoryTile
@@ -71,12 +68,6 @@ class StoryList extends Component {
     )
   }
 };
-const Result = (props) => {
-  return(
-    <div className="result">{props.counter}</div>
-  )
-};
-
 class Button extends Component {
   handleClick = () => {
     this.props.onClickFunction(this.props.incrementValue);
@@ -100,7 +91,7 @@ class TitleBar implements Component {
 }
 
 class App extends Component {
-  state = { title: "beststories" }
+  state = { title: "newstories" }
   setTitle = (newTitle) => {
     this.setState({
       title : newTitle
